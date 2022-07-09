@@ -8,13 +8,11 @@ public class Viaje
     private String destino;
     private GregorianCalendar horaSalida;
     private GregorianCalendar horaLlegada;
-    
-    private Pasajero[] pasajeros;
     private ArrayList<Pasajero> listaPasajeros;
-    
     private int capacidad;
     private int cont;
     private Bus bus;
+    private Buseta buseta;
     
     public Viaje()
     {
@@ -28,11 +26,9 @@ public class Viaje
         this.horaSalida = horaSalida;
         this.horaLlegada = horaLlegada;
         this.capacidad = capacidad;
-        
-        this.pasajeros = new Pasajero[capacidad];
         this.listaPasajeros = new ArrayList<Pasajero>();
-        
         this.cont=0;
+        buseta = new Buseta();
     }
     
     public String getOrigen()
@@ -75,16 +71,6 @@ public class Viaje
         this.horaLlegada = horaLlegada;
     }//end method setHoraLlegada
 
-    public Pasajero[] getPasajeros()
-    {
-        return this.pasajeros;
-    }//end method getPasajeros
-
-    public void setPasajeros(Pasajero[] pasajeros)
-    {
-        this.pasajeros = pasajeros;
-    }//end method setPasajeros
-
     public Bus getBus()
     {
         return this.bus;
@@ -95,33 +81,20 @@ public class Viaje
         this.bus = bus;
     }
     
+    public ArrayList<Pasajero> getListaPasajeros()
+    {
+        return this.listaPasajeros;
+    }
+    
+    
     public void anadirPasajero(Pasajero p)
     {
-        this.pasajeros[this.cont] = p;
-        this.cont++;
-        
         this.listaPasajeros.add(p);
     }
     
     public String buscarPasajeros(String busqueda)
     {
         String resultado = "";
-        
-        for (int i = 0; i < this.cont; i++)
-        {
-            if (this.pasajeros[i].getNombre().equals(busqueda) || this.pasajeros[i].getApellido().equals(busqueda) || (this.pasajeros[i].getNumDocumento()+"").equals(busqueda))
-            {
-                resultado = resultado + this.pasajeros[i].toString() + "\n";
-            }
-        }
-        
-        for (int i = 0; i < this.listaPasajeros.size(); i++)
-        {
-            if (this.listaPasajeros.get(i).getNombre().equals(busqueda) || this.listaPasajeros.get(i).getApellido().equals(busqueda) || (this.listaPasajeros.get(i).getNumDocumento()+"").equals(busqueda))
-            {
-                resultado = resultado + this.listaPasajeros.get(i).toString() + "\n";
-            }
-        }
         
         for (Pasajero p : this.listaPasajeros)
         {
@@ -130,8 +103,6 @@ public class Viaje
                 resultado = resultado + p.toString() + "\n";
             }
         }
-        
-        
         return resultado;
     }
     

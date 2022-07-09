@@ -93,7 +93,7 @@ public class Inicio
         JOptionPane.showMessageDialog(null, v.toString());
         for (int i = 0; i<v.getCont(); i++)
         {
-            JOptionPane.showMessageDialog(null, "Pasajero #"+(i+1)+"\n"+v.getPasajeros()[i].toString());
+            JOptionPane.showMessageDialog(null, "Pasajero #"+(i+1)+"\n"+v.getListaPasajeros().get(i).toString());
         }
     }
     
